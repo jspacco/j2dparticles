@@ -5,7 +5,7 @@
 J2DParticles is a library that can be used for both Java and JavaFX. The library was developed to facilitate the creation of particle effects in graphics applications such as games.
 
 
-= Sample =
+== Sample ==
 
 The example below is a small demonstration of the usability of the library. With about 80 lines of code is possible to develop a simple particle effect.
 
@@ -32,18 +32,19 @@ public class TesteJ2DParticles{
         public Painel() {
             animatorThread = new Thread( this );
             animatorThread.start();
-            // cria grupo de partículas
+
+            // create particle group
             ParticleGroup particleGroup = new ParticleGroup();
-            // é necessário definir um domínio
+            // its necessary to define a domain
             particleGroup.setSourceDomain( new CircleDomain( 20, 150, 5 ) );
-            // define uma velocidade inicial
+            // set initial velocity
             particleGroup.addSourceAction( new VelocityParticleSource( 60, -180, 80, -200 ) );
-            // adiciona ações: gravidade e mata partículas após 600 milissegundos
+            // add actions: gravity and kill particles after 600 miliseconds
             particleGroup.addParticleAction( new GravityParticleAction( 0, 10 ) );
             particleGroup.addParticleAction( new KillParticleAction( 600 ) );
             groupManager.addParticleGroup( particleGroup );
         }
-        // desenha as partículas na tela
+        // paint particles
         public void paint( Graphics g ) {
             g.setColor( Color.white );
             g.fillRect( 0, 0, getWidth(), getHeight() );
@@ -52,12 +53,12 @@ public class TesteJ2DParticles{
                 g.fillOval( (int) p.getCurrentPosition().x, (int) (p.getCurrentPosition().y - 5), 5, 5 );
                 }
             }
-            // controle da execução das partículas e renderização
+            // control particles execution and rendering
             public void run() {
             Thread currentThread = Thread.currentThread();
             while ( currentThread == animatorThread ) {
-            groupManager.update(); // atualiza partículas
-            repaint(); // renderiza partículas
+            groupManager.update(); // update particles
+            repaint(); // render particles
             try {
                 Thread.sleep( 20 );
             }
@@ -70,7 +71,49 @@ public class TesteJ2DParticles{
 }
 }}}
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Packages Description ==
+
+At moment, the library contains the following packages.
+
+=== com.j2dparticles.data ===
+Contains the basic data.
+  * GroupManager
+  * Position
+  * Velocity
+  * SymbolProperty
+
+=== com.j2dparticles.domains ===
+Contains the classes that describe the geometric areas where particles are created or where are they undergo changes. 
+
+  * Domain
+  * CircleDomain
+  * PolygonDomain
+  * RingDomain
+
+=== com.j2dparticles.particleSource ===
+Classes define the initial values of the particles group.
+
+  * ColorParticleSource
+  * EndTimeParticleSource
+  * ExplosionParticleSource
+  * RandomCharacterParticleSource
+  * SizeParticleSource
+  * TextCreationParticleSource
+  * VelocityParticleSource
+
+=== com.j2dparticles.particleActions ===
+Classes that modify the values of the particles.
+
+  * AttractToTarget
+  * AvoidPointParticleAction
+  * BounceCircleParticleAction
+  * BounceParticleAction
+  * BounceRectangleParticleAction
+  * ColorToColorParticleAction
+  * GravityParticleAction
+  * KillParticleAction
+  * ParticleAction
+  * SinkParticleAction
+  * TextMovimentParticleAction
+  * TextTargetParticleAction
+  * TurnTransparenteParticleAction
