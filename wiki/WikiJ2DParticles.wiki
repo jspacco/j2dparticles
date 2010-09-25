@@ -73,6 +73,10 @@ public class TesteJ2DParticles{
 }
 }}}
 
+The result can be seen in the image below.
+
+http://lh6.ggpht.com/_ttDD7bj8BSo/TJ4LyTbODkI/AAAAAAAAABE/TGVmHjglAMI/exemplo.png
+
 == Packages Description ==
 
 At moment, the library contains the following packages.
