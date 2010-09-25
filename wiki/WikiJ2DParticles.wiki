@@ -44,6 +44,7 @@ public class TesteJ2DParticles{
             particleGroup.addParticleAction( new KillParticleAction( 600 ) );
             groupManager.addParticleGroup( particleGroup );
         }
+
         // paint particles
         public void paint( Graphics g ) {
             g.setColor( Color.white );
@@ -53,17 +54,18 @@ public class TesteJ2DParticles{
                 g.fillOval( (int) p.getCurrentPosition().x, (int) (p.getCurrentPosition().y - 5), 5, 5 );
                 }
             }
+
             // control particles execution and rendering
             public void run() {
-            Thread currentThread = Thread.currentThread();
-            while ( currentThread == animatorThread ) {
-            groupManager.update(); // update particles
-            repaint(); // render particles
-            try {
-                Thread.sleep( 20 );
-            }
-            catch ( InterruptedException e ) {
-                break;
+               Thread currentThread = Thread.currentThread();
+               while ( currentThread == animatorThread ) {
+                  groupManager.update(); // update particles
+                  repaint(); // render particles
+                  try {
+                     Thread.sleep( 20 );
+                  }
+                  catch ( InterruptedException e ) {
+                     break;
                 }
             }
         }
